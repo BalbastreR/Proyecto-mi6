@@ -1,0 +1,60 @@
+body {
+  font-family: 'Rubik', sans-serif;
+  color: white;
+  margin: 10px;
+  background-color: black;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+input, select {
+  padding: 6px;
+  margin-bottom: 6px;
+  width: 185px;
+  box-sizing: border-box;
+}
+
+label {
+  width: 115px;
+  display: inline-block;
+}
+
+#calculatorForm, #result {
+  max-width: 340px;
+  width: 100%;
+}
+
+button {
+  background-color: #01a396;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-size: 2em;
+  width: 100%;
+  cursor: pointer;
+}
+
+.total {
+  font-size: 1.6em;
+  font-weight: bold;
+  color: #01a396;
+}
+
+.breakdown {
+  font-size: 1em;
+}
+
+.info-mail {
+  font-size: 0.85em;
+  color: #aaa;
+  max-width: 340px;
+  margin-top: 10px;
+}
+
+footer {
+  margin-top: 20px;
+  font-size: 0.85em;
+  color: #aaa;
+}

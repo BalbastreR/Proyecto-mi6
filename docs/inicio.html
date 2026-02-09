@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Calculadora de eventos</title>
+
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+  <form id="calculatorForm">
+    <label>Licencia:</label>
+    <input type="number" id="license" placeholder="Introduce tu calca">
+
+    <label>Día y Hora:</label>
+    <input type="datetime-local" id="dateTime">
+
+    <label>Recogida:</label>
+    <input type="text" id="recogida" placeholder="Ciudad o punto de interés">
+
+    <label>Destino:</label>
+    <input type="text" id="destino" placeholder="Ciudad o punto de interés">
+
+    <label>Km Ida:</label>
+    <input type="number" id="kmIda" placeholder="Solo ida">
+
+    <label>Peajes Ida:</label>
+    <input type="number" id="peajesIda" placeholder="Solo ida">
+
+    <label>Espera (min):</label>
+    <input type="number" id="tiempoEspera" placeholder="En minutos">
+
+    <input type="checkbox" id="recogidaAero"> Recogida Aeropuerto<br>
+    <input type="checkbox" id="recogidaSants"> Recogida Sants<br>
+    <input type="checkbox" id="sietePlazas"> Servicio 7 plazas<br><br>
+
+    <button type="button" onclick="calcularCoste()">Calcular</button>
+  </form>
+
+  <div id="result"></div>
+
+  <div class="info-mail">
+    Hacer captura y enviar a:<br>
+    <a href="mailto:miriam.mendez@joinup.es">miriam.mendez@joinup.es</a>
+  </div>
+
+  <footer>
+    © 2026 Calculadora de Eventos · created by Arturo Balbastre
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
