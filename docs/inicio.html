@@ -9,11 +9,13 @@
 </head>
 
 <body>
+  <div id="gate" style="max-width:340px; width:100%; margin-bottom:12px;"></div>
   <nav style="margin-bottom:15px;">
   <a href="inicio.html">Inicio</a> |
   <a href="precios.html">Precios</a> |
   <a href="faq.html">FAQ</a> |
   <a href="registro.html">Registro</a>
+  <a href="perfil.html">Perfil</a>
 </nav>
 
   <form id="calculatorForm">
@@ -56,6 +58,27 @@
     © 2026 Calculadora de Eventos · created by Arturo Balbastre
   </footer>
 
-  <script src="script.js"></script>
+  <script src="auth.js"></script>
+  <script>
+  // Si no hay perfil completo, bloqueamos el uso
+  if (typeof isProfileComplete === "function" && !isProfileComplete()) {
+    const gate = document.getElementById('gate');
+    gate.innerHTML = `
+      <div style="border:1px solid #333; padding:10px; border-radius:8px;">
+        <div class="total" style="font-size:1.1em;">Falta completar tu perfil</div>
+        <div class="breakdown" style="color:#aaa;">
+          Para usar la calculadora necesitas completar tus datos.
+        </div>
+        <div style="margin-top:10px;">
+          <a href="perfil.html">Completar perfil →</a>
+        </div>
+      </div>
+    `;
+
+    // Desactivar el botón calcular (para que no se use)
+    const btns = document.querySelectorAll('button');
+    btns.forEach(b => b.disabled = true);
+  }
+</script>
 </body>
 </html>

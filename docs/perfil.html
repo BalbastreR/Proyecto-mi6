@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Completar perfil</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <nav style="margin-bottom:15px;">
+    <a href="inicio.html">Inicio</a> |
+    <a href="registro.html">Registro</a> |
+    <a href="perfil.html">Perfil</a> |
+    <a href="admin.html">Admin</a>
+  </nav>
+
+  <h2>Completar perfil</h2>
+  <p style="max-width:340px; color:#aaa; margin-top:0;">
+    Para usar la web necesitas completar estos datos.
+  </p>
+
+  <form id="perfilForm" style="max-width:340px; width:100%;">
+    <label for="nombre">Nombre y apellidos</label>
+    <input id="nombre" type="text" required placeholder="Nombre y apellidos">
+
+    <label for="email">Email</label>
+    <input id="email" type="email" required placeholder="correo@ejemplo.com">
+
+    <label for="telefono">Teléfono</label>
+    <input id="telefono" type="tel" required placeholder="600123123">
+
+    <label for="licencia">Licencia / calca</label>
+    <input id="licencia" type="text" required placeholder="Calca / licencia">
+
+    <label for="tipoVehiculo">Tipo de vehículo</label>
+    <select id="tipoVehiculo" required>
+      <option value="">Selecciona…</option>
+      <option value="normal">Normal</option>
+      <option value="7plazas">7 plazas</option>
+    </select>
+
+    <label for="modelo">Modelo vehículo</label>
+    <input id="modelo" type="text" required placeholder="Ej: Tesla Model 3">
+
+    <label for="matricula">Matrícula</label>
+    <input id="matricula" type="text" required placeholder="Ej: 1234 ABC">
+
+    <button type="submit" style="margin-top:10px;">Guardar perfil</button>
+  </form>
+
+  <div id="msg" style="max-width:340px; width:100%; margin-top:12px;"></div>
+
+  <script src="auth.js"></script>
+  <script>
+    // Si ya hay perfil guardado, lo cargamos para editar
+    const existing = getProfile();
+    if (existing) {
+      document.getElementById('nombre').value = existing.nombre || '';
+      document.getElementById('email').value = existing.email || '';
+      document.getElementById('telefono').value = existing.telefono || '';
+      document.getElementById('licencia').value = existing.licencia || '';
+      document.getElementById('tipoVehiculo').value = existing.tipoVehiculo || '';
+      document.getElementById('modelo').value = existing.modelo || '';
+      document.getElementById('matricula').value = existing.matricula || '';
+    }
+
+    document.getElementById('perfilForm').addEventListener('submit', (e) => {
+      e.preventDefault();
+
+      const profile = {
+        nombre: document.getElementById('nombre').value.trim(),
+        email: document.getElementById('email').value.trim().toLowerCase(),
+        telefono: document.getElementById('telefono').value.trim(),
+        licencia: document.getElementById('licencia').value.trim(),
+        tipoVehiculo: document.getElementById('tipoVehiculo').value,
+        modelo: document.getElementById('modelo').value.trim(),
+        matricula: document.getElementById('matricula').value.trim().toUpperCase(),
+        updatedAt: new Date().toISOString()
+      };
+
+      const res = saveProfile(profile);
+      const msg = document.getElementById('msg');
+
+      if (!res.ok) {
+        msg.innerHTML = `<div class="breakdown" style="color:#ffb3b3;">${res.error}</div>`;
+        return;
+      }
+
+      msg.innerHTML = `
+        <div class="total">Perfil guardado ✅</div>
+        <div class="breakdown" style="color:#aaa;">Ya puedes volver al inicio.</div>
+        <div style="margin-top:10px;"><a href="inicio.html">Ir a Inicio →</a></div>
+      `;
+    });
+  </script>
+</body>
+</html>
